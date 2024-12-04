@@ -39,6 +39,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#14F12A"
                         android:scaleType="fitCenter"
                         android:src="@drawable/consulta" />
 
@@ -63,6 +64,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#09609E"
                         android:scaleType="fitCenter"
                         android:src="@drawable/exame" />
 
@@ -94,6 +96,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#FB0000"
                         android:scaleType="fitCenter"
                         android:src="@drawable/consulta" />
 
@@ -118,6 +121,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#FFEB3B"
                         android:scaleType="fitCenter"
                         android:src="@drawable/hospital" />
 
@@ -149,6 +153,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#918E8E"
                         android:scaleType="fitCenter"
                         android:src="@drawable/lista"
                         tools:src="@drawable/lista"
@@ -175,6 +180,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#FF9800"
                         android:scaleType="fitCenter"
                         android:src="@drawable/vacina" />
 

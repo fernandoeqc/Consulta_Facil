@@ -7,38 +7,38 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AtestadoAdapter(private var list:List<Atestado>):RecyclerView.Adapter<AtestadosViewHolder>() {
+class PrescricaoAdapter(private var list:List<Prescricao>):RecyclerView.Adapter<PrescricaoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AtestadosViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrescricaoViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_view_atestados,parent,false)
-        return AtestadosViewHolder(view)
+        return PrescricaoViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AtestadosViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PrescricaoViewHolder, position: Int) {
         val context = holder.item.context
-        val atestado = list[position]
+        val prescricao = list[position]
         //print list
-        Log.d("ATESTADOS", atestado.toString())
-        holder.nomeMedico.text = atestado.nomeMedico
+        Log.d("ATESTADOS", prescricao.toString())
+        holder.nomeMedico.text = prescricao.nome
         //holder.especialidade.text = atestado.specialty
-        holder.dataAtestado.text = atestado.data
+        holder.dataAtestado.text = (prescricao.dias + "/n" + prescricao.validade)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DetalhesAtestado::class.java)
-            intent.putExtra("atestado", atestado)
+            val intent = Intent(context, DetalhesPrescricao::class.java)
+            intent.putExtra("prescricao", prescricao)
             context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int {
-        Log.d("AtestadoAdapter", "Tamanho da lista: ${list.size}")
+        Log.d("PrescricaoAdapter", "Tamanho da lista: ${list.size}")
         return list.size
     }
 
 }
 
-class AtestadosViewHolder (var item: View) :RecyclerView.ViewHolder(item){
+class PrescricaoViewHolder (var item: View) :RecyclerView.ViewHolder(item){
     var nomeMedico: TextView = item.findViewById(R.id.nomeMedico_atestado)
     //var especialidade: TextView = item.findViewById(R.id.tipo_atestado)
     var dataAtestado: TextView = item.findViewById(R.id.data_atestado)

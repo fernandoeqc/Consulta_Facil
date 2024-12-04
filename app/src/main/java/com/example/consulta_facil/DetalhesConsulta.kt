@@ -46,10 +46,10 @@ class DetalhesConsulta : AppCompatActivity() {
         }
 
         //alterar nomes de campos
-        val campoNomeMedico = findViewById<TextView>(R.id.cirurgia_medico)
-        val campoEspecialidade = findViewById<TextView>(R.id.cirurgia_nome)
-        val campoData = findViewById<TextView>(R.id.cirurgia_data)
-        val campoEndereco = findViewById<TextView>(R.id.cirurgia_endereço)
+        val campoNomeMedico = findViewById<TextView>(R.id.consulta_medico)
+        val campoEspecialidade = findViewById<TextView>(R.id.consulta_nome)
+        val campoData = findViewById<TextView>(R.id.consulta_data)
+        val campoEndereco = findViewById<TextView>(R.id.consulta_endereço)
 
         campoNomeMedico.text = consulta.nomeMedico
         campoEspecialidade.text = consulta.especialidade

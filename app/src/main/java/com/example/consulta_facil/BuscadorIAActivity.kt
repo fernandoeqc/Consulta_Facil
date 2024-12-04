@@ -65,8 +65,8 @@ class BuscadorIAActivity : AppCompatActivity() {
                 modelName = "gemini-1.5-flash",
                 apiKey = "AIzaSyBJD4ROJopgoZUpduCGCh0MNsLUrC0rKu4" // Substitua com a sua chave de API
             )
-
-            val response = generativeModel.generateContent(userMessage)
+            val prompt = "voce é um assistente para um aplicativo de gerenciamento de consultas. seus clientes sao pessoas geralmente de idade elevada e que possuem poucas habilidades tecnologicas. o aplicativo consiste nas funcionalidades: verificar consultas, verificar exames, verificar cirurgias, verificar hospitais proximos, verificar vacinas e emitir atestados e prescricoes. essas funcoes estao organizadas na tela principal, nessa ordem, de cima para baixo, da esquerda para a direita. ha tambem as funcoes de cancelar consulta e ver resultado do exame. com essas informacoes, responda: "
+            val response = generativeModel.generateContent(prompt + userMessage)
             addMessage(response.text.toString(), isUser = false)
         } catch (e: Exception) {
             addMessage("Erro ao obter resposta: ${e.message}", isUser = false)

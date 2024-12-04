@@ -1,7 +1,6 @@
 package com.example.consulta_facil
 
 import android.content.Intent
-import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -15,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class DetalhesAtestado : AppCompatActivity() {
+class DetalhesPrescricao : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var searchBar: EditText
         lateinit var btnSearch: Button
@@ -39,11 +38,11 @@ class DetalhesAtestado : AppCompatActivity() {
         val buttonEmitirResultado = findViewById<Button>(R.id.button_imprimir)
 
         val fb = Firebase.firestore
-        val atestado = intent.getParcelableExtra<Atestado>("atestado")
-        var nomeAtestado = ""
+        val prescricao = intent.getParcelableExtra<Prescricao>("prescricao")
+        var nomePrescricao = ""
 
-        if (atestado == null) {
-            Toast.makeText(this, "Atestado não encontrado", Toast.LENGTH_SHORT).show()
+        if (prescricao == null) {
+            Toast.makeText(this, "Prescricao não encontrado", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
@@ -51,28 +50,28 @@ class DetalhesAtestado : AppCompatActivity() {
         //alterar nomes de campos
         val campoNomeMedico = findViewById<TextView>(R.id.text_nome_medico_at)
         val campoData = findViewById<TextView>(R.id.text_data_at)
-        val campoNomeAtestado = findViewById<TextView>(R.id.nome_atestado)
+        val campoNomePrescricao = findViewById<TextView>(R.id.nome_atestado)
 
-        if (campoNomeMedico == null || campoData == null || campoNomeAtestado == null) {
+        if (campoNomeMedico == null || campoData == null || campoNomePrescricao == null) {
             Toast.makeText(this, "informação não encontrado", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        campoNomeMedico.text = atestado.nomeMedico
-        campoNomeAtestado.text = atestado.specialty
-        campoData.text = atestado.data
+        campoNomeMedico.text = prescricao.nome
+        campoData.text = prescricao.dias
+        campoData.text = prescricao.validade
 
-        Log.d("DETALHES_ATESTADO", atestado.id.toString())
-        Log.d("DATA:", atestado.data.toString())
-        Log.d("SPECIALTY:", atestado.specialty.toString())
+        Log.d("DETALHES_ATESTADO", prescricao.id.toString())
+        Log.d("DATA:", prescricao.dias.toString())
+        Log.d("SPECIALTY:", prescricao.validade.toString())
 
-        fb.collection("usuarios").document(atestado.id.toString()).get()
+        fb.collection("usuarios").document(prescricao.id.toString()).get()
             .addOnSuccessListener { doc ->
                 if (doc != null && doc.exists()) {
-                    nomeAtestado = doc.getString("specialty").toString()
-                    Log.d("DETALHES_ATESTADO", nomeAtestado)
-                    campoNomeAtestado.text = nomeAtestado
+                    nomePrescricao = doc.getString("specialty").toString()
+                    Log.d("DETALHES_ATESTADO", nomePrescricao)
+                    campoNomePrescricao.text = nomePrescricao
                 }
                 else {
                     Log.d("DETALHES_ATESTADO", "No such document")
@@ -86,7 +85,7 @@ class DetalhesAtestado : AppCompatActivity() {
             }
 
         buttonEmitirResultado.setOnClickListener{
-            Toast.makeText(this, "Imprimindo Atestado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Imprimindo Prescrição", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/consulta_tela"
+    android:id="@+id/vacina_tela"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,7 +24,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:contentDescription="Imagem do médico"
-            android:src="@drawable/consulta" />
+            android:src="@drawable/vacina" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,14 +34,14 @@
             android:paddingStart="16dp">
 
             <TextView
-                android:id="@+id/consulta_medico"
+                android:id="@+id/vacina_medico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dr. José Marcelino"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/consulta_nome"
+                android:id="@+id/vacina_nome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/consulta_data"
+                android:id="@+id/vacina_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -64,50 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/image_view_endereço"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="Imagem do médico"
-            android:src="@drawable/local" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="16dp">
-
-            <TextView
-                android:id="@+id/main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Endereço"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/consulta_endereço"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text=" "
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <!-- Botões -->
-
-    <Button
-        android:id="@+id/button_cancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:padding="16dp"
-        android:text="CANCELAR CONSULTA"
-        android:textColor="@android:color/white" />
 
 </LinearLayout>

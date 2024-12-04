@@ -12,7 +12,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/consulta" />
+        app:srcCompat="@drawable/vacina" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -25,14 +25,20 @@
         app:layout_constraintTop_toTopOf="@+id/iconImageView">
 
         <TextView
-            android:id="@+id/nomeMedico_atestado"
+            android:id="@+id/nomeMedico_vacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/data_atestado"
+            android:id="@+id/tipo_vacina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/data_vacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp" />

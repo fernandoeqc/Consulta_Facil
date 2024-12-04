@@ -37,32 +37,41 @@ class meus_atestados : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        var dataset = mutableListOf<Atestado>()
-        getUserAppointments("4S8sdQreEiVDTp92096L")
-        dataset.forEach {
-            Log.d("ATESTADOS", it.toString())
-        }
+
+        getUserAppointments(UserSession.userId.toString())
+
     }
         private fun getUserAppointments(userId: String) {
             val fb = Firebase.firestore
-            val dataset = mutableListOf<Atestado>()
+            val datasetAtestado = mutableListOf<Atestado>()
+            val datasetPrescricao = mutableListOf<Prescricao>()
             val appointmentsRef = fb.collection("usuarios").document(userId).collection("atestados")
             appointmentsRef.get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        dataset.add( Atestado(
+                        datasetAtestado.add( Atestado(
                             id = document.id,
                             nomeMedico = document.getString("doctorName"),
-                            specialty = document.getString("specialty"),
+                            specialty = document.getString("description"),
                             data = document.getString("date")
+                        ))
+                        datasetPrescricao.add( Prescricao(
+                            id = document.id,
+                            nome = document.getString("name"),
+                            dias = document.getString("days"),
+                            validade = document.getString("periodicity")
                         ))
                     }
 
                     recy = findViewById(R.id.RecyclerViewAtestados)
-                    val adapter = AtestadoAdapter(dataset)
+                    val adapterAtestado = AtestadoAdapter(datasetAtestado)
+                    val adapterPrescricao = PrescricaoAdapter(datasetPrescricao)
                     recy.layoutManager = LinearLayoutManager(this)
-                    recy.adapter = adapter
-                    adapter.notifyDataSetChanged()
+                    recy.adapter = adapterAtestado
+                    //recy.adapter = adapterPrescricao
+                    adapterAtestado.notifyDataSetChanged()
+
+                    //adapterPrescricao.notifyDataSetChanged()
                 }
                 .addOnFailureListener { exception ->
                     Log.w("ATESTADOS", "Erro ao buscar atestados: ", exception)

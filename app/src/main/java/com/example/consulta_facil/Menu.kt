@@ -57,7 +57,7 @@ class Menu : AppCompatActivity() {
 
         val bt_vacinas = findViewById<ImageButton>(R.id.button_minhas_vacinas)
         bt_vacinas.setOnClickListener {
-            val intent = Intent(this, PacientesVacinas::class.java)
+            val intent = Intent(this, menu_vacinas::class.java)
             startActivity(intent)
         }
 

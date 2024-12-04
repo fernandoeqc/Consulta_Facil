@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class DetalhesCirurgia : AppCompatActivity() {
+class DetalhesVacina : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var searchBar: EditText
         lateinit var btnSearch: Button
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_detalhes_cirurgia)
+        setContentView(R.layout.activity_detalhes_vacina)
 
         searchBar = findViewById(R.id.search_bar)
         btnSearch = findViewById(R.id.btn_search)
@@ -35,37 +35,33 @@ class DetalhesCirurgia : AppCompatActivity() {
         }
 
         val fb = Firebase.firestore
-        val cirurgia = intent.getParcelableExtra<Cirurgia>("cirurgia")
-        var nomeCirurgia = ""
+        val vacina = intent.getParcelableExtra<Vacina>("vacina")
 
-        if (cirurgia == null) {
-            Toast.makeText(this, "Cirurgia não encontrada", Toast.LENGTH_SHORT).show()
+        if (vacina == null) {
+            Toast.makeText(this, "Vacina não encontrada", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
         //alterar nomes de campos
-        val campoNomeMedico = findViewById<TextView>(R.id.cirurgia_medico)
-        val campoData = findViewById<TextView>(R.id.cirurgia_data)
-        val campoNomeCirurgia = findViewById<TextView>(R.id.vacina_nome)
+        val campoNomeMedico = findViewById<TextView>(R.id.vacina_medico)
+        val campoEspecialidade = findViewById<TextView>(R.id.vacina_nome)
+        val campoData = findViewById<TextView>(R.id.vacina_data)
 
-        campoNomeMedico.text = cirurgia.nomeMedico
-        campoNomeCirurgia.text = cirurgia.specialty
-        campoData.text = cirurgia.data
+        campoNomeMedico.text = vacina.nomeMedico
+        campoEspecialidade.text = vacina.specialty
+        campoData.text = vacina.data
 
-        Log.d("DETALHES_EXAME", cirurgia.id.toString())
-        Log.d("DATA:", cirurgia.data.toString())
-        Log.d("SPECIALTY:", cirurgia.specialty.toString())
+        Log.d("DETALHES_VACINA", vacina.id.toString())
 
-        fb.collection("usuarios").document(cirurgia.id.toString()).get()
+        fb.collection("usuarios").document(vacina.id.toString()).get()
             .addOnSuccessListener { doc ->
                 if (doc != null && doc.exists()) {
-                    nomeCirurgia = doc.getString("examType").toString()
-                    Log.d("DETALHES_CIRURGIA", nomeCirurgia)
-                    campoNomeCirurgia.text = nomeCirurgia
+                    val endereco = doc.getString("address").toString()
+                    Log.d("DETALHES_VACINA", endereco)
                 }
                 else {
-                    Log.d("DETALHES_CIRURGIA", "No such document")
+                    Log.d("DETALHES_VACINA", "No such document")
                 }
             }.addOnFailureListener { exception ->
                 Toast.makeText(this, "erro", Toast.LENGTH_SHORT).show()
@@ -74,6 +70,5 @@ class DetalhesCirurgia : AppCompatActivity() {
                 println(exception.localizedMessage)
                 println(exception.cause)
             }
-
     }
 }
